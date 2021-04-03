@@ -10,11 +10,19 @@ const QuoteMachine = () => {
 		});
 	}, []);
 
+	const handleClick = (e) => {
+		axios.get("https://api.quotable.io/random").then((res) => {
+			setQuote(res.data);
+		});
+	};
+
 	return (
 		<div id="quote-box">
 			<div id="text">{quote.content}</div>
-			<div id="author"></div>
-			<button id="new-quote"></button>
+			<div id="author">{quote.author}</div>
+			<button id="new-quote" onClick={handleClick}>
+				New Quote
+			</button>
 			<a id="tweet-quote"></a>
 		</div>
 	);
